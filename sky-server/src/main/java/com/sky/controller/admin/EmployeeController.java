@@ -101,4 +101,18 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * 更改员工状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("更改员工状态")
+    public Result changeStatus(@PathVariable Integer status, Long id){
+        log.info("更改员工状态，id：{}，当前状态：{}", id, status);
+        employeeService.changeStatus(status, id);
+        return Result.success();
+    }
 }
