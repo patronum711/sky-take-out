@@ -6,9 +6,7 @@ import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
 import com.sky.vo.SetmealVO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface SetmealMapper {
@@ -43,4 +41,19 @@ public interface SetmealMapper {
             "on s.category_id = c.id " +
             "where s.id = #{id}")
     SetmealVO getById(Long id);
+
+    /**
+     * 根据id查询套餐状态
+     * @param id
+     * @return
+     */
+    @Select("select status from setmeal where id = #{id}")
+    Integer queryStatusById(Long id);
+
+    /**
+     * 删除套餐
+     * @param id
+     */
+    @Delete("delete from setmeal where id = #{id}")
+    void deleteById(Long id);
 }
