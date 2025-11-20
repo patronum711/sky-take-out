@@ -161,4 +161,18 @@ public class DishServiceImpl implements DishService {
             }
         }
     }
+
+    /**
+     * 根据分类id或名称查询菜品
+     * @param categoryId
+     * @param name
+     * @return
+     */
+    @Override
+    public List<Dish> queryByCategoryIdOrName(Integer categoryId, String name) {
+        if(categoryId!=null)
+            return dishMapper.listByCategoryId(categoryId);
+        else
+            return dishMapper.listByName(name);
+    }
 }

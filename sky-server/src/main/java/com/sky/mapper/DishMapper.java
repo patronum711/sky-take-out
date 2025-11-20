@@ -57,4 +57,20 @@ public interface DishMapper {
      */
     @AutoFill(OperationType.UPDATE)
     void updateByDishId(Dish dish);
+
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    @Select("select * from dish where category_id = #{categoryId}")
+    List<Dish> listByCategoryId(Integer categoryId);
+
+    /**
+     * 根据名称查询菜品
+     * @param name
+     * @return
+     */
+    @Select("select * from dish where name like concat('%', #{name}, '%')")
+    List<Dish> listByName(String name);
 }
